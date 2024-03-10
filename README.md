@@ -2,10 +2,17 @@
 ![squidbasic](https://github.com/hashsquid/hashsquid/assets/162920851/fb1bb752-90bb-4524-9895-bdb50a94dd5d)
 
 [Intro](#introduction)
+
 [Technical Details](#technical-details)
+
 [Contract Write Functions](#contract-write-functions)
+
 [Contract Read Functions](#contract-read-functions)
-[Finding Hashes](#finding-hashes-python )
+
+[Finding Hashes (Python)](#finding-hashes-python)
+
+[Finding Hashes (C)](#finding-hashes-c)
+    
 
 ## Introduction
   The HashSquid project features 256 generative art hashSquid **NFTs which are able to be _stolen_.** 
@@ -87,8 +94,9 @@ hashSum 2143
   
   
   
-## Finding hashes (python) 
+  ## Finding hashes (python)
 
-## Finding hashes (C) 
+  # Finding hashes (C)
+
 
   
