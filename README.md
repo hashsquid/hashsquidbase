@@ -1,45 +1,25 @@
 
 ![squidbasic](https://github.com/hashsquid/hashsquid/assets/162920851/fb1bb752-90bb-4524-9895-bdb50a94dd5d)
 
+[Intro](#introduction)
+[Technical Details](#technical-details)
+[Contract Write Functions](#contract-write-functions)
+[Contract Read Functions](#contract-read-functions)
+[Finding Hashes](#finding-hashes-python )
+
 ## Introduction
-  The HashSquid project features 256 generative art pixelsquid NFTs whch are able to be _stolen_. 
+  The HashSquid project features 256 generative art hashSquid **NFTs which are able to be _stolen_.** 
   
-  This is a unique twist on the gamification of NFTs. The objective here is to get and maintain ownership of squidpixel NFTs, which can be stolen. 
+  This is a unique twist on the gamification of NFTs. The objective in this game is to get and maintain ownership of hashSquid NFTs, which can be stolen. 
 
-  Each pixelsquid NFT maps to a `baseHash` (bytes32) and a `guardSum` (uint16). To steal an NFT, an `input` (bytes32) must be found where `hashSum(keccak256(baseHash, input))` is below the NFT's current `guardSum`. So, the `guardSum` protects the NFT from being stolen: the lower it is, the more difficult it is to steal. 
+  Each hashSquid NFT maps to a `baseHash` (bytes32) and a `guardSum` (uint16). To steal an NFT, an `input` (bytes32) must be found where `hashSum(keccak256(baseHash, input))` is below the NFT's current `guardSum`. So, the `guardSum` protects the NFT from being stolen: the lower it is, the more difficult it is to steal. 
 
-  PixexSquid NFTs with low `guardSums` are worth more, since they are harder to steal. 
+  hashSquid NFTs with low `guardSums` are worth more, since they are harder to steal. 
 
-  Minting a pixelsquid only costs gas fees, and there is no `input` (bytes32) requirement.
+  Minting a hashSquid only costs gas fees, and there is no `input` (bytes32) requirement.
 
   FTM CA: 0xc71091b5644b59574d4af5f2464e83346b1cc89f
 
-## Contract Write Functions:
-  For now, the easiest way to call these functions is on the ftmscan blockchain explorer.
-  
-  **Mint** 
-    No input accepted. Max 256 mintings. 
-    Minted NFT's `baseHash` set to `keccak256(block.timestamp, msg.sender)` 
-    Minted NFT's `guardSum` set to `keccak256(msg.sender, tokenId)`
-
-  **updateGuardSum** `(bytes32 data, uint256 tokenId)`
-    Only the owner of the NFT with `tokenId` can call this function
-    Checks the `hashSum(keccak256(baseHash, data))` < `guardSum` 
-    If it is, reset the `baseHash` to `keccak256(block.timestamp, msg.sender, hashSum)` 
-    and update the NFT's `guardSum`
-
-  **reflip**  `(bytes32 data, uint256 tokenId)`
-  
-## Contract Read Functions:
-
-  **getBaseHash** 
-
-  **getGuardSum** 
-  
-  
-  
-
-  
 ## Technical Details
   Consider the keccak256 hash of `1234` (string): `0x387a8233c96e1fc0ad5e284353276177af2186e7afa85296f106336e376669f7`. This hash can be expressed as an array of HexBytes (with possible values 0-255): 
   `[56,122,130,51,201,110,31,192,173,94,40,67,83,39,97,119,175,33,134,231,175,168,82,150,241,6,51,110,55,102,105,247] `
@@ -50,7 +30,7 @@ the `hashSum` of this byte array is just the sum of the decimals at each positio
 
   Since the maximum possible value in the byte array is 255, and there are 32 positions in the array, the maximum possible `keccak256 hashSum` is 8160. Half this value is 4080, and this is the average `keccak256 hashSum` after 100,000 iterations. So the distribution is normally distributed around 4080; finding `hashSums` further away from 4080 in either +/- direction becomes increasingly difficult. One out of 2^256 `inputs` is expected to give a `keccak256` hash with all zeros, i.e. with a `hashSum` of zero
 
-  Each pixelsquid NFT maps to a `baseHash`, and to steal an NFT, an `input` (bytes32) must be found which hashes together with the NFT's current `baseHash` to produce a `hashSum` less than the NFT's current `guardSum`. 
+  Each hashSquid NFT maps to a `baseHash`, and to steal an NFT, an `input` (bytes32) must be found which hashes together with the NFT's current `baseHash` to produce a `hashSum` less than the NFT's current `guardSum`. 
   
   Let's say an NFT's current `baseHash` is `0x387a8233c96e1fc0ad5e284353276177af2186e7afa85296f106336e376669f7` and the NFT's current `guardSum` is `2150`. First, let's test `input` (bytes32) of `0x47a4ac6742dabb8c531c6e2b6fba383e56619dec9bdb4937dd50a707bf24bd02`.
   
@@ -70,9 +50,45 @@ hashSum 2143
   ```
   `2143 < 2150` is `true`, so this `input` works. Now the NFT can be stolen. We just call `reflip(input (bytes32), tokenID)` on the contract, and the NFT will be transferred to `msg.sender`. 
 
+  ## Contract Write Functions:
+  For now, the easiest way to call these functions is on the ftmscan blockchain explorer.
   
-  Finding hashes (python) 
+  **Mint** 
+  
+    No input accepted. Max 256 mintings. 
+    Minted NFT's baseHash set to `keccak256(block.timestamp, msg.sender)
+    Minted NFT's guardSum set to `keccak256(msg.sender, tokenId)
 
-  Finding hashes (C) 
+  **updateGuardSum** `(bytes32 data, uint256 tokenId)`
+  
+    Only the owner of the NFT with tokenId can call this function
+    Checks the hashSum(keccak256(baseHash, data)) < guardSum
+    If it is, reset baseHash to keccak256(block.timestamp, msg.sender, hashSum)
+    and update the NFT's guardSum
+
+  **reflip**  `(bytes32 data, uint256 tokenId)`
+  
+    i.e. pilfer, get it?
+    Only non-owners can call this function
+    Checks the hashSum(keccak256(baseHash, data)) < guardSum
+    If it is, reset baseHash to keccak256(block.timestamp, msg.sender, hashSum)
+    and update guardSum
+    and transfer ownership to msg.sender
+  
+## Contract Read Functions:
+
+  **getBaseHash** `()`
+
+    Given an NFT tokenId, return the current baseHash
+
+  **getGuardSum**  `()`
+
+    Given an NFT tokenId, return the current guardSum
+  
+  
+  
+## Finding hashes (python) 
+
+## Finding hashes (C) 
 
   
