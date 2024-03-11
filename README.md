@@ -17,7 +17,7 @@
 ## Introduction
   The HashSquid project features 256 generative art hashSquid **NFTs which are able to be _stolen_** using the contract's `reflip` function
   
-  This is a unique twist on the gamification of NFTs. The objective in this game is to obtain and maintain ownership of hashSquid NFTs, which can be stolen. 
+  This is a unique twist on the gamification of NFTs. The objective in this game is to obtain and maintain ownership of hashSquid NFTs. 
 
   Each hashSquid NFT maps to a `baseHash` (bytes32) and a `guardSum` (uint16). To steal an NFT, an `input` (bytes32) must be found where `hashSum(keccak256(baseHash, input))` is below the NFT's current `guardSum`. So, the `guardSum` protects the NFT from being stolen: the lower it is, the more difficult it is to steal. (See helper scripts to find good hashes in [Python](#finding-hashes-python) and [C](#finding-hashes-c))
 
