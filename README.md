@@ -98,11 +98,11 @@ hashSum 2143
   
   
   ## Finding hashes (python)
-
+        
         python find_hash.py <guardSum> <baseHash>
         
   ## Finding hashes (C)
-
+    
       git clone https://github.com/brainhub/SHA3IUF
       cd SHA3IUF
       cp ../find_hash.c ./
@@ -110,5 +110,7 @@ hashSum 2143
       ./find_hash <guardSum> <baseHash (without 0x)>
 
   
+  ## TODO 
 
+      update find_hash.c to work on GPU
   
