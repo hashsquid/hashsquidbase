@@ -15,7 +15,7 @@
     
 
 ## Introduction
-  The HashSquid project features 256 generative art hashSquid **NFTs which are able to be _stolen_.** 
+  The HashSquid project features 256 generative art hashSquid **NFTs which are able to be _stolen_** using the contract's `reflip` function
   
   This is a unique twist on the gamification of NFTs. The objective in this game is to obtain and maintain ownership of hashSquid NFTs, which can be stolen. 
 
