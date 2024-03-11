@@ -16,12 +16,12 @@ args = parser.parse_args()
 
 bh = HexBytes(args.baseHash)
 
-gt = False
-while gt == False:
+lt = False
+while lt == False:
     new = secrets.token_hex(32)
     res = Web3.soliditySha3(['bytes32', 'bytes32'], [bh, '0x'+new])
     s = get_sum(HexBytes(res))
     if s <= args.guardSum:
         print (new)
         print (s)
-        gt = True
+        lt = True
