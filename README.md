@@ -25,7 +25,7 @@
 
   Minting a hashSquid only costs gas fees, and there is no `input` (bytes32) requirement.
 
-  FTM CA: 0xc71091b5644b59574d4af5f2464e83346b1cc89f
+  FTM CA: 
 
 ## Technical Details
   Consider the keccak256 hash of `1234` (string): 
