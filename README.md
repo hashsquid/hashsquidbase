@@ -99,7 +99,7 @@ hashSum 2143
   
   ## Finding hashes (python)
         
-        python find_hash.py <guardSum> <baseHash>
+        python find_hash.py <guardSum> <baseHash (with 0x)>
         
   ## Finding hashes (C)
     
