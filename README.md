@@ -99,9 +99,15 @@ hashSum 2143
   
   ## Finding hashes (python)
 
+        python find_hash.py <guardSum> <baseHash>
+        
   ## Finding hashes (C)
 
-  Clone this repository: https://github.com/brainhub/SHA3IUF
+      git clone https://github.com/brainhub/SHA3IUF
+      cd SHA3IUF
+      cp ../find_hash.c ./
+      gcc -o find_hash find_hash.c sha3.c
+      ./find_hash <guardSum> <baseHash (without 0x)>
 
   
 
