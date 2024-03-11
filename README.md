@@ -72,7 +72,7 @@ hashSum 2143
   **updateGuardSum** `(bytes32 data, uint256 tokenId)`
   
     Only the owner of the NFT with tokenId can call this function
-    Checks the hashSum(keccak256(baseHash, data)) < guardSum
+    Checks if hashSum(keccak256(baseHash, data)) < guardSum
     If it is, reset baseHash to keccak256(block.timestamp, msg.sender, hashSum)
     and update the NFT's guardSum
 
@@ -80,7 +80,7 @@ hashSum 2143
   
     i.e. pilfer, get it?
     Only non-owners can call this function
-    Checks the hashSum(keccak256(baseHash, data)) < guardSum
+    Checks if hashSum(keccak256(baseHash, data)) < guardSum
     If it is, reset baseHash to keccak256(block.timestamp, msg.sender, hashSum)
     and update guardSum
     and transfer ownership to msg.sender
