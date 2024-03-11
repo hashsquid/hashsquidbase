@@ -28,10 +28,13 @@
   FTM CA: 0xc71091b5644b59574d4af5f2464e83346b1cc89f
 
 ## Technical Details
-  Consider the keccak256 hash of `1234` (string): `0x387a8233c96e1fc0ad5e284353276177af2186e7afa85296f106336e376669f7`. This hash can be expressed as an array of HexBytes (with possible values 0-255): 
+  Consider the keccak256 hash of `1234` (string): 
+  `0x387a8233c96e1fc0ad5e284353276177af2186e7afa85296f106336e376669f7`. 
+  
+  This hash can be expressed as an array of HexBytes (with possible values 0-255): 
   `[56,122,130,51,201,110,31,192,173,94,40,67,83,39,97,119,175,33,134,231,175,168,82,150,241,6,51,110,55,102,105,247] `
   
-the `hashSum` of this byte array is just the sum of the decimals at each position, so `3670` in this case. The histogram below shows the `hashSum` distribution for 100,000 random `keccak256` hashes:
+  the `hashSum` of this byte array is just the sum of the decimals at each position, so `3670` in this case. The histogram below shows the `hashSum` distribution for 100,000 random `keccak256` hashes:
   
   ![hash_dist](https://github.com/hashsquid/hashsquid/assets/162920851/146f6b2f-6001-4bb8-ab3a-9d408ad23fba)
 
@@ -96,7 +99,10 @@ hashSum 2143
   
   ## Finding hashes (python)
 
-  # Finding hashes (C)
+  ## Finding hashes (C)
 
+  Clone this repository: https://github.com/brainhub/SHA3IUF
+
+  
 
   
