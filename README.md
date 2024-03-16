@@ -38,6 +38,8 @@
     -- An NFT's guardSum can be updated (owner only) if an input hash is found that satisfies the hashSum condition above
     -- When an NFT 1) is stolen or 2) has its guardSum updated, the guardSum is updated with the new, lower value
     -- If an NFT is stolen while it is listed for sale on an NFT marketplace, the marketplace's approval for the NFT is removed and the sale becomes invalid
+
+  When an NFT is transferred, the baseHash changes. 
   
   FTM CA: 
 
@@ -54,7 +56,7 @@
 
    The average `keccak256 hashSum` after 100,000 iterations is 4080 = (8160/2). The distribution is normally distributed around the average; finding `hashSums` further away from 4080 in either +/- direction becomes increasingly difficult. One out of 2^256 `inputs` is expected to give a `keccak256` hash with all zeros, i.e. with a `hashSum` of zero. Since the maximum possible value in the byte array is 255, and there are 32 positions in the array, the maximum possible `keccak256 hashSum` is 8160. 
 
-  Each hashSquid NFT maps to a `baseHash`, and to steal an NFT, an `input` (bytes32) must be found which hashes together with the NFT's `baseHash` to produce a `hashSum` less than the NFT's current `guardSum`. An NFT always maps to the same `baseHash`
+  Each hashSquid NFT maps to a `baseHash`, and to steal an NFT, an `input` (bytes32) must be found which hashes together with the NFT's `baseHash` to produce a `hashSum` less than the NFT's current `guardSum`. When an NFT is transferred, the baseHash changes.
   
   Let's say an NFT's `baseHash` is `0x387a8233c96e1fc0ad5e284353276177af2186e7afa85296f106336e376669f7` and the NFT's current `guardSum` is `2150`. First, let's test `input` (bytes32) of `0x47a4ac6742dabb8c531c6e2b6fba383e56619dec9bdb4937dd50a707bf24bd02`.
   
@@ -106,8 +108,6 @@ hashSum 2143
   **getGuardSum**  `()`
 
     Given an NFT tokenId, return the current guardSum
-  
-  
   
   ## Finding hashes (python)
         
