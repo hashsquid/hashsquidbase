@@ -15,7 +15,7 @@
     
 
 ## Introduction
-  **Prize pool NFT** collection on Base with a guaranteed minimum one-time prize of **1.0000384 eth**. Some programming skills are required to compete effectively
+  **Prize pool NFT** collection on Base with a guaranteed minimum one-time prize of **1.0000384 eth**.
 
   There are a total of 256 hashSquid to be minted
   
@@ -84,8 +84,8 @@ hashSum 2143
 
   ## Contract Write Functions:
   For now, there are two ways to call these functions:
-      1) On [basescan](https://basescan.org/address/0xfec66319b6ebc37f33e2aecb00c40b21b57de5b8#writeContract)
-      2) on http://hashsquid.com/
+  - [basescan](https://basescan.org/address/0xfec66319b6ebc37f33e2aecb00c40b21b57de5b8#writeContract)
+  - http://hashsquid.com/
   
   **Mint** 
   
